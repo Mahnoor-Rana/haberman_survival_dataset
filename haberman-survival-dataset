@@ -1,0 +1,66 @@
+import pandas as pd
+import numpy as np 
+import seaborn as sns  
+import matplotlib as plt
+
+haber = pd.read_csv('D:\datasets\haberman.csv')
+
+#data points or features 
+# data is the shape of graphical object measured as numerically 
+# features is the name of coulmns as name age sex etc 
+print(haber.shape)
+
+
+# columns
+print(haber.columns)
+
+# explain objectives 
+# do analysis of haberman survival data set  through graphs cdf or pdf
+
+
+haber['nodes'].value_counts
+
+# perform univaraite
+#cdf(cumulative distribution function)
+import matplotlib.pyplot as plt 
+import numpy as np 
+
+counts ,bin_edges= np.histogram(haber['age'],bins = 10,density = True)
+pdf=counts/sum(counts)
+print(pdf)
+print(bin_edges)
+#compute cdf
+cdf=np.cumsum(pdf)
+plt.plot(pdf)
+plt.plot(bin_edges)
+plt.grid()
+plt.show()
+
+
+
+#box plot
+sns.boxplot(x='year',y='age',data = haber)
+plt.show
+
+
+
+#violin plot
+sns.violinplot(x='year',y = 'age',data=haber,size =4)
+plt.show()
+
+#bivariate analysis, pair plots,2 D scatter
+plt.close();
+sns.set_style('whitegrid')
+sns.pairplot(haber,hue='year',size = 3)
+plt.show()
+
+
+#scatter plot 
+sns.set_style('whitegrid')
+sns.FacetGrid(haber,hue='year',data = haber,size= 5).map(plt.scatter,'year','age').add_legend();
+plt.show()
+
+#observations / results /conclusions 
+#In univaraite box plot  and violin plots is more understandable 
+#In bivaraite scatter plot is useful in classifications 
+# also we use 'if- else condition '
